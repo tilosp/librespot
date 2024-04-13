@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 use std::collections::BTreeMap;
 use std::convert::Infallible;
-use std::net::{Ipv4Addr, SocketAddr};
+use std::net::{Ipv6Addr, SocketAddr};
 use std::pin::Pin;
 use std::sync::Arc;
 use std::task::{Context, Poll};
@@ -192,7 +192,7 @@ impl DiscoveryServer {
 
         let (close_tx, close_rx) = oneshot::channel();
 
-        let address = SocketAddr::new(Ipv4Addr::UNSPECIFIED.into(), *port);
+        let address = SocketAddr::new(Ipv6Addr::UNSPECIFIED.into(), *port);
 
         let make_service = make_service_fn(move |_| {
             let discovery = discovery.clone();
